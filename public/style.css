@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+}
+
+div{
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    padding-bottom: 40px;
+    margin-left: 35%;
+    margin-right: 35%;
+
+}

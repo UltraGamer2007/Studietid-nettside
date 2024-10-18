@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Opprett Bruker</title>
+</head>
+<body>
+    <h1>Opprett Bruker</h1>
+
+    <div>
+        <h2>Fyll ut informasjon</h2> 
+
+        <form action="/opprett_bruker" method="POST">
+            <input type="text" name="brukernavn" placeholder="Brukernavn" required>
+            <input type="password" name="passord" placeholder="Passord" required>
+            <br>
+            <label for="leder">Er du en leder?</label>
+            <input type="checkbox" name="leder" id="leder">
+            <input type="submit" value="Opprett bruker">
+        </form>
+        <a href="index.html">Tilbake til innlogging</a>
+    </div>
+</body>
+</html>
