@@ -1,0 +1,112 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f4e3; /* Lys bakgrunn */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Fyller hele høyden av visningen */
+}
+
+.container {
+    max-width: 950px; /* Økt bredde */
+    width: 100%;
+    margin: 6000px auto; /* Mer luft over og under */
+    padding: 40px; /* Mer padding for større område */
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd; /* Lett grå kant */
+}
+
+h1, h2 {
+    color: #e67e22; /* Oransje farge for overskrifter */
+    text-align: center;
+}
+
+form {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], 
+input[type="password"], 
+select {
+    width: 100%;
+    padding: 15px; /* Økt padding for input-feltene */
+    margin: 10px 0;
+    border: 1px solid #ddd; /* Grå kant */
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus, 
+input[type="password"]:focus, 
+select:focus {
+    border: 1px solid #e67e22; /* Oransje kant ved fokus */
+}
+
+input[type="submit"] {
+    background: #e67e22; /* Oransje bakgrunn for knapper */
+    color: white;
+    border: none;
+    padding: 15px; /* Økt padding */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border: 1px solid #d35400; /* Mørkere oransje kant */
+}
+
+input[type="submit"]:hover {
+    background: #d35400; /* Mørkere oransje ved hover */
+}
+
+a {
+    color: #e67e22; /* Oransje farge for linker */
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+a:hover {
+    text-decoration: underline; /* Understrek ved hover */
+}
+
+.table-container {
+    border: 1px solid #ddd; /* Lett grå kant for tabell-container */
+    border-radius: 5px;
+    overflow: hidden; 
+}
+
+table {
+    width: 100%; /* Full bredde av container */
+    border-collapse: collapse;
+    margin-top: 20px; /* Margin over tabellen */
+}
+
+table, th, td {
+    border: 1px solid #ddd; /* Grå kant for tabeller */
+}
+
+th, td {
+    padding: 15px; /* Økt padding for cellene */
+    text-align: left; /* Venstrejustert tekst */
+}
+
+th {
+    background-color: #f2f2f2; /* Lys grå bakgrunn for overskrifter */
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%; /* Bredde for mindre skjermer */
+        padding: 20px; /* Padding for mindre skjermer */
+    }
+}

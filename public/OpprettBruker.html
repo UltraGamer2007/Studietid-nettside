@@ -7,20 +7,20 @@
     <title>Opprett Bruker</title>
 </head>
 <body>
-    <h1>Opprett Bruker</h1>
-
-    <div>
-        <h2>Fyll ut informasjon</h2> 
-
+    <div class="container">
+        <h1>Opprett Bruker</h1>
         <form action="/opprett_bruker" method="POST">
             <input type="text" name="brukernavn" placeholder="Brukernavn" required>
+            <br>
             <input type="password" name="passord" placeholder="Passord" required>
             <br>
-            <label for="leder">Er du en leder?</label>
-            <input type="checkbox" name="leder" id="leder">
-            <input type="submit" value="Opprett bruker">
+            <label>
+                <input type="checkbox" name="leder"> Er leder?
+            </label>
+            <br>
+            <input type="submit" value="Opprett Bruker">
         </form>
-        <a href="index.html">Tilbake til innlogging</a>
+        <a href="/">Tilbake til innlogging</a>
     </div>
 </body>
 </html>

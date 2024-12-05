@@ -7,13 +7,11 @@
     <title>Studietid</title>
 </head>
 <body>
-    <h1>Studietid</h1>
-
-    <div>
+    <div class="container">
+        <h1>Studietid</h1>
         <h2>Logg inn</h2> 
-
-        <form action="/login" method="POST">
-            <input type="text" name="brukernavn" placeholder="Brukernavn">
+        <form id="loginForm" action="/login" method="POST">
+            <input type="text" name="brukernavn" placeholder="Brukernavn" required>
             <br>
             <input type="password" name="passord" placeholder="Passord" required>
             <br>
@@ -21,5 +19,33 @@
         </form>
         <a href="OpprettBruker.html">Opprett ny bruker</a>
     </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.redirected) {
+                    // Logg brukernavn til localStorage
+                    localStorage.setItem("brukernavn", data.brukernavn);
+
+                    // Omdiriger brukeren
+                    window.location.href = response.url;
+                } else {
+                    alert("Feil brukernavn eller passord");
+                }
+            } catch (err) {
+                console.error("Feil ved innlogging:", err);
+            }
+        });
+    </script>
 </body>
 </html>

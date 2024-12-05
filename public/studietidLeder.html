@@ -3,9 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studietid</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Studietid - Leder</title>
 </head>
 <body>
-    <h1>studietid leder</h1>
+    <div class="container">
+        <h1>Godkjenn Studietid</h1>
+        <h2>Studietid for godkjenning</h2>
+
+        <div id="godkjennStudietid">
+            <!-- Dynamically populate list of study times to approve -->
+        </div>
+        <a href="/">Tilbake til innlogging</a>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Get username from local storage
+                const brukernavn = localStorage.getItem("brukernavn");
+
+                // Fetch study times that need approval (status 0 = pending)
+                fetch(`/hent_studietid_for_godkjenning?brukernavn=${brukernavn}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const container = document.getElementById("godkjennStudietid");
+                        data.forEach(entry => {
+                            if (entry.status === 0) { // Only show pending study times
+                                const entryDiv = document.createElement("div");
+                                entryDiv.innerHTML = `
+                                    <p><strong>Fag:</strong> ${entry.fag} | <strong>Rom:</strong> ${entry.rom} | <strong>Tidspunkt:</strong> ${entry.tidspunkt}</p>
+                                    <button onclick="godkjennStudietid(${entry.id})">Godkjenn</button>
+                                `;
+                                container.appendChild(entryDiv);
+                            }
+                        });
+                    })
+                    .catch(error => console.error("Feil ved henting av studietid for godkjenning:", error));
+            });
+
+            // Function to approve study time
+            function godkjennStudietid(aktivitetId) {
+                fetch('/godkjenn_studietid', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ aktivitetId })
+                })
+                .then(response => response.text())
+                .then(message => {
+                    alert(message);
+                    window.location.reload(); // Reload to reflect updated status
+                })
+                .catch(error => {
+                    console.error("Feil ved godkjenning av studietid:", error);
+                });
+            }
+        </script>
+    </div>
 </body>
 </html>

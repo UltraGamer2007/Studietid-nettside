@@ -1,13 +1,111 @@
 body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f4e3;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 400px;
+    width: 100%;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+h1, h2 {
+    color: #e67e22;
     text-align: center;
 }
 
-div{
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 20px;
-    padding-bottom: 40px;
-    margin-left: 35%;
-    margin-right: 35%;
+form {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
 
+input[type="text"], 
+input[type="password"], 
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus, 
+input[type="password"]:focus {
+    border: 1px solid #e67e22;
+}
+
+input[type="submit"] {
+    background: #e67e22;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border: 1px solid #d35400; /* Border around submit button */
+}
+
+input[type="submit"]:hover {
+    background: #d35400;
+}
+
+a {
+    color: #e67e22;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.table-container {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden; /* Prevents border radius from being cut off */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
 }

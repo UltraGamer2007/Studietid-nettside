@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_elev.css">
+    <title>Studietid - Elev</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Registrer Studietid</h1>
+
+        <form action="/registrer_studietid" method="POST">
+            <label for="fag">Velg fag:</label>
+            <select name="fag" id="fag" required>
+                <option value="">Velg fag</option>
+                <option value="Matematikk">Matematikk</option>
+                <option value="Norsk">Norsk</option>
+                <option value="Engelsk">Engelsk</option>
+                <option value="Naturfag">Naturfag</option>
+                <option value="Historie">Historie</option>
+            </select>
+        
+            <label for="rom">Velg rom:</label>
+            <select name="rom" id="rom" required>
+                <option value="">Velg rom</option>
+                <option value="Rom 101">Rom 101</option>
+                <option value="Rom 102">Rom 102</option>
+                <option value="Rom 103">Rom 103</option>
+                <option value="Rom 201">Rom 201</option>
+            </select>
+
+            <!-- Skjult input for brukernavn -->
+            <input type="hidden" name="brukernavn" id="brukernavn" value="brukernavn_her"> 
+
+            <input type="submit" value="Registrer Studietid">
+        </form>
+
+        <h2>Registrert Studietid</h2>
+        <div id="registrertStudietid">
+            <!-- Her vil vi vise listen over registrert studietid -->
+        </div>
+
+        <a href="/">Tilbake til innlogging</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const brukernavn = localStorage.getItem("brukernavn"); // Hent brukernavn fra localStorage
+            document.getElementById("brukernavn").value = brukernavn; // Sett brukernavn i skjult felt
+
+            fetch(`/hent_studietid?brukernavn=${brukernavn}`)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById("registrertStudietid");
+                    data.forEach(entry => {
+                        const entryDiv = document.createElement("div");
+                        // Vis fag, rom, tidspunkt og status
+                        entryDiv.innerHTML = `
+                            <p><strong>Fag:</strong> ${entry.fag} | <strong>Rom:</strong> ${entry.rom} | 
+                            <strong>Tidspunkt:</strong> ${entry.tidspunkt} | 
+                            <strong>Status:</strong> ${entry.status === 0 ? 'Under godkjenning' : 'Godkjent'}</p>
+                        `;
+                        container.appendChild(entryDiv);
+                    });
+                })
+                .catch(error => console.error("Feil ved henting av registrert studietid:", error));
+        });
+    </script>
+</body>
+</html>
